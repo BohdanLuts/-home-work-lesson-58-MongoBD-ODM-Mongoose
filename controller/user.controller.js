@@ -21,7 +21,7 @@ module.exports.getUsers = async (req, res, next) => {
   const { limit = 10 } = req.query;
 
   try {
-    const foundUser = await User.find().sort({ _id: 1 }).limit(limit).skip();
+    const foundUser = await User.find().sort({ _id: 1 }).limit(limit).skip(0);
 
     res.status(200).send({ data: foundUser });
   } catch (error) {
@@ -44,9 +44,44 @@ module.exports.getUserById = async (req, res, next) => {
   }
 };
 
-module.exports.updateUserById = async (req, res, next) => {};
+module.exports.updateUserById = async (req, res, next) => {
+  const {
+    params: { userId },
+    body,
+  } = req;
 
-module.exports.deleteUserById = async (req, res, next) => {};
+  try {
+    // runValidators: true, - "вмикає" валідатори, описані в моделі
+
+    const updatedUser = await User.findByIdAndUpdate(userId, body, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!updatedUser) {
+      return next(createHttpError(404, 'User Not Found'));
+    }
+    res.status(200).send({ data: updatedUser });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.deleteUserById = async (req, res, next) => {
+  const { userId } = req.params;
+
+  try {
+    const deletedUser = await User.findByIdAndDelete(userId);
+
+    if (!deletedUser) {
+      return next(createHttpError(404, 'User Not Found'));
+    }
+
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+};
 
 module.exports.createUserPost = async (req, res, next) => {};
 
