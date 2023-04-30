@@ -3,6 +3,8 @@ const { userController } = require('../controller');
 
 const userRouter = Router();
 
+// TODO validation middleware
+
 userRouter
   .route('/')
   .get(userController.getUsers)
