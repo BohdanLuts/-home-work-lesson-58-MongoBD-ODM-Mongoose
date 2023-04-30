@@ -8,3 +8,4 @@ mongoose
   .catch(err => console.log('err :>> ', err));
 
 module.exports.User = require('./user');
+module.exports.Post = require('./post');
