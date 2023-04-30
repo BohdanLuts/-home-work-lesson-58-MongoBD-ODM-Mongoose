@@ -3,10 +3,14 @@ Content-Type: application/json
 
 {
   "firstName": "Test",
-   "lastName": "Testovych",
-   "email": "test@test.com",
-   "birthday": "1990-01-02",
-   "gender":"male",
-   "isMerried": true,
-   "workExperience": 10
+  "lastName": "Testovych",
+  "email": "test@test.com",
+  "birthday": "1990-01-02",
+  "gender": "male",
+  "isMerried": true,
+  "workExperience": 0
 }
+
+GET http://localhost:5000/api/users?limit=10
+
+GET http://localhost:5000/api/users/644e7208af67d3680fd3f58b
