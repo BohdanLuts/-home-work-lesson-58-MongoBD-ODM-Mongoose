@@ -45,5 +45,42 @@ module.exports.getPhoneById = async (req, res, next) => {
     next(err);
   }
 };
-module.exports.updatePhoneById = async (req, res, next) => {};
-module.exports.deletePhoneById = async (req, res, next) => {};
+
+///////////////////////////////////
+
+module.exports.updatePhoneById = async (req, res, next) => {
+  const {
+    params: { phoneId },
+    body,
+  } = req;
+
+  try {
+    const updatedPhone = await Phone.findByIdAndUpdate(phoneId, body, {
+      new: true,
+      // runValidators: true,
+    });
+
+    if (!updatedPhone) {
+      return next(createHttpError(404, 'Phone Not Found'));
+    }
+    res.status(200).send({ data: updatedPhone });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.deletePhoneById = async (req, res, next) => {
+  const { phoneId } = req.params;
+
+  try {
+    const deletedPhone = await Phone.findByIdAndDelete(phoneId);
+
+    if (!deletedPhone) {
+      return next(createHttpError(404, 'Phone Not Found'));
+    }
+
+    res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+};

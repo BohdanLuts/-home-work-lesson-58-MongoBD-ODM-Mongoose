@@ -6,7 +6,7 @@ Content-Type: application/json
   "brand": "Iphone",
   "year": "2022",
   "ram": "256",
-  "screenDiagonal": "9.0",
+  "screenDiagonal": "7",
   "hasNfc": true
 }
 
@@ -14,3 +14,13 @@ Content-Type: application/json
 GET http://localhost:5000/api/phones?limit=5
 
 GET http://localhost:5000/api/phones/645a7ea039202795c00a6b4a
+
+PATCH http://localhost:5000/api/phones/645a7de81e2aae1e71f7a5b2
+Content-Type: application/json
+
+{
+  "ram": "777",
+  "year": "2020"
+}
+
+DELETE http://localhost:5000/api/phones/645a7ea039202795c00a6b4a
