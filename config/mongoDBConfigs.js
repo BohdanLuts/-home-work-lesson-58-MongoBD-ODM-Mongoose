@@ -2,16 +2,16 @@ module.exports = {
   development: {
     host: 'localhost',
     port: 27017,
-    dbName: 'pe2022-1_users_dev',
+    dbName: 'hw_nosql_phones_dev',
   },
   test: {
     host: 'localhost',
     port: 27017,
-    dbName: 'pe2022-1_users_test',
+    dbName: 'hw_nosql_phones_test',
   },
   production: {
     host: 'localhost',
     port: 27017,
-    dbName: 'pe2022-1_users_prod',
+    dbName: 'hw_nosql_phones_prod',
   },
 };
