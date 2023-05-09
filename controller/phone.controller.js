@@ -19,7 +19,31 @@ module.exports.createPhone = async (req, res, next) => {
   }
 };
 
-module.exports.getPhones = async (req, res, next) => {};
-module.exports.getPhoneById = async (req, res, next) => {};
+module.exports.getPhones = async (req, res, next) => {
+  const { limit = 5 } = req.query;
+
+  try {
+    const foundPhone = await Phone.find().sort({ _id: 1 }).limit(limit).skip();
+
+    res.status(200).send({ data: foundPhone });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.getPhoneById = async (req, res, next) => {
+  const { phoneId } = req.params;
+
+  try {
+    const foundPhone = await Phone.findById(phoneId);
+    if (!foundPhone) {
+      return next(createHttpError(404, 'Phone Not Found'));
+    }
+
+    res.status(200).send({ data: foundPhone });
+  } catch (err) {
+    next(err);
+  }
+};
 module.exports.updatePhoneById = async (req, res, next) => {};
 module.exports.deletePhoneById = async (req, res, next) => {};

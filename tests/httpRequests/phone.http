@@ -9,3 +9,8 @@ Content-Type: application/json
   "screenDiagonal": "9.0",
   "hasNfc": true
 }
+
+
+GET http://localhost:5000/api/phones?limit=5
+
+GET http://localhost:5000/api/phones/645a7ea039202795c00a6b4a
