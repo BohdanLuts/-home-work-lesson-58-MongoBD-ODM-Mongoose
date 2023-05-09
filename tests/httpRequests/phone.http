@@ -1,0 +1,11 @@
+POST http://localhost:5000/api/phones
+Content-Type: application/json
+
+{
+  "model": "13 Pro Max",
+  "brand": "Iphone",
+  "year": "2022",
+  "ram": "256",
+  "screenDiagonal": "9.0",
+  "hasNfc": true
+}
