@@ -46,8 +46,6 @@ module.exports.getPhoneById = async (req, res, next) => {
   }
 };
 
-///////////////////////////////////
-
 module.exports.updatePhoneById = async (req, res, next) => {
   const {
     params: { phoneId },
@@ -57,7 +55,7 @@ module.exports.updatePhoneById = async (req, res, next) => {
   try {
     const updatedPhone = await Phone.findByIdAndUpdate(phoneId, body, {
       new: true,
-      // runValidators: true,
+      runValidators: true,
     });
 
     if (!updatedPhone) {
